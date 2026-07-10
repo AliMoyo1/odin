@@ -1,0 +1,16 @@
+.env
+keys/
+workspace/
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+dist/
+.pytest_cache/
+backups/
+*.egg-info/
+.venv/
+venv/
+.DS_Store
+celerybeat-schedule
+celerybeat.pid

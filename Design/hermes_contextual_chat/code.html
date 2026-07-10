@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="en" class="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=JetBrains+Mono:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e5e2e1",
+                        "tertiary-container": "#c78f00",
+                        "system-amber": "#FFB800",
+                        "primary-fixed-dim": "#ffb693",
+                        "on-primary-container": "#572000",
+                        "surface-variant": "#353535",
+                        "background": "#131313",
+                        "surface": "#131313",
+                        "on-secondary-container": "#bab8b7",
+                        "on-tertiary": "#412d00",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "primary-container": "#ff6b00",
+                        "on-secondary": "#313030",
+                        "primary-fixed": "#ffdbcc",
+                        "tertiary": "#ffba20",
+                        "on-primary": "#561f00",
+                        "surface-dim": "#131313",
+                        "terminal-black": "#050505",
+                        "status-safe": "#00E676",
+                        "outline": "#a98a7d",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-bright": "#393939",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed": "#271900",
+                        "glass-border": "rgba(255, 107, 0, 0.15)",
+                        "outline-variant": "#5a4136",
+                        "secondary": "#c9c6c5",
+                        "on-primary-fixed": "#351000",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed-variant": "#474646",
+                        "surface-tint": "#ffb693",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-highest": "#353535",
+                        "surface-container-low": "#1c1b1b",
+                        "status-critical": "#FF3D00",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary-container": "#4a4949",
+                        "error": "#ffb4ab",
+                        "surface-container": "#20201f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface-variant": "#e2bfb0",
+                        "on-tertiary-container": "#422d00",
+                        "primary": "#ffb693",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "tertiary-fixed": "#ffdea8",
+                        "inverse-primary": "#a04100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "12px",
+                        "sidebar-width": "280px",
+                        "unit": "4px",
+                        "margin-desktop": "24px",
+                        "gutter": "16px",
+                        "console-height": "200px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "code-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-background text-on-surface font-body-lg antialiased overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SIDEBAR NAVIGATION (RAIL) -->
+<aside class="fixed h-screen w-sidebar-width left-0 bg-surface-container-lowest dark:bg-terminal-black border-r border-outline-variant dark:border-glass-border flex flex-col py-margin-desktop space-y-gutter z-50">
+<!-- Brand Header -->
+<div class="px-6 flex items-center space-x-3 mb-6">
+<div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-container/20">
+<span class="material-symbols-outlined text-primary text-headline-md" style="font-variation-settings: 'FILL' 1;" data-original-icon="grid_view">grid_view</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none">ODIN</h1>
+<p class="text-label-caps font-label-caps text-on-surface-variant opacity-60">System Active</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 px-4 space-y-2">
+<!-- Dashboard -->
+<a href="#" class="flex items-center px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all duration-200 rounded-xl group">
+<span class="material-symbols-outlined mr-4" data-icon="grid_view">grid_view</span>
+<span class="text-label-caps font-label-caps">Dashboard</span>
+</a>
+<!-- Chat (Active State) -->
+<a href="#" class="flex items-center px-4 py-3 bg-primary-container text-on-primary-container rounded-xl shadow-[0_0_15px_rgba(255,107,0,0.3)] transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined mr-4" data-icon="forum" style="font-variation-settings: 'FILL' 1;">forum</span>
+<span class="text-label-caps font-label-caps">Chat</span>
+</a>
+<a href="#" class="flex items-center px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all duration-200 rounded-xl group">
+<span class="material-symbols-outlined mr-4" data-icon="checklist">checklist</span>
+<span class="text-label-caps font-label-caps">Tasks</span>
+</a>
+<a href="#" class="flex items-center px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all duration-200 rounded-xl group">
+<span class="material-symbols-outlined mr-4" data-icon="folder_open">folder_open</span>
+<span class="text-label-caps font-label-caps">Files</span>
+</a>
+<a href="#" class="flex items-center px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all duration-200 rounded-xl group">
+<span class="material-symbols-outlined mr-4" data-icon="auto_stories">auto_stories</span>
+<span class="text-label-caps font-label-caps">Knowledge</span>
+</a>
+<a href="#" class="flex items-center px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all duration-200 rounded-xl group">
+<span class="material-symbols-outlined mr-4" data-icon="school">school</span>
+<span class="text-label-caps font-label-caps">Learning</span>
+</a>
+</nav>
+<!-- Footer Actions -->
+<div class="px-4 pt-4 border-t border-outline-variant dark:border-glass-border space-y-2">
+<a href="#" class="flex items-center px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl">
+<span class="material-symbols-outlined mr-4" data-icon="sync">sync</span>
+<span class="text-label-caps font-label-caps">Sync</span>
+</a>
+<a href="#" class="flex items-center px-4 py-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl">
+<span class="material-symbols-outlined mr-4" data-icon="settings">settings</span>
+<span class="text-label-caps font-label-caps">Settings</span>
+</a>
+</div>
+</aside>
+<!-- MAIN WORKSPACE -->
+<main class="ml-sidebar-width h-screen flex flex-col relative">
+<!-- TOP APP BAR -->
+<header class="h-16 flex justify-between items-center px-margin-desktop bg-background/80 backdrop-blur-md border-b border-glass-border z-40">
+<div class="flex items-center space-x-6">
+<div class="text-label-caps font-label-caps text-tertiary-container tracking-[0.2em] font-bold">ORCHESTRATOR // CHAT_V4</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<nav class="hidden md:flex items-center space-x-6">
+<span class="text-primary border-b-2 border-primary pb-1 text-label-caps font-label-caps cursor-pointer">Development</span>
+<span class="text-on-surface-variant hover:text-primary cursor-pointer transition-colors text-label-caps font-label-caps">ThemisIQ</span>
+</nav>
+</div>
+<!-- Hermes Orb Centerpiece -->
+<div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+<div class="hermes-active w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shadow-[0_0_20px_rgba(255,107,0,0.5)]"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoKrnPF7nbm_oUFucoXcGs7yIfymj3MMPfjVVAeIN9h5GAsJP664VXYI3giLlrgjB5mckqX0nrNMG4qsEZzwsiDGmL_z-YevFFEiO_KjxoIwR8P05LABfRuw0foAr2maEyVIYYQHwHPH8fHx6Ww3AILOj06ro83-Rx58fNWpz_OaswOe4xBp2043DpNiUNfRn5p6foKQx7kOp-dR9TOg28jl2zO4LGKI_easJ3TVGxllcEyiMKKQ8ebg" alt="Hermes AI Core" class="w-full h-full rounded-full object-cover shadow-[0_0_20px_rgba(255,107,0,0.5)]"></div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors" data-icon="schedule">schedule</span>
+<div class="flex items-center space-x-2 pl-4 border-l border-outline-variant">
+<img class="w-8 h-8 rounded-full border border-primary/30" data-alt="A portrait of a senior systems engineer with graying hair and glasses, wearing a dark tactical turtleneck, sitting in a dark office illuminated only by orange computer screens. The mood is high-tech and serious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvZuLFon76nSQQ2q5xR_uQnJ3uSdQn9W0M90PDmtr7UaXnEanaj3W1PIaBlae9XQBHhUFFCtt_2FMGtQEVCmdyOnxB05Fx1ijjo0mp9gVWBRmEUWzjnw1T80McHti7eBfMLMJneHNUoC22TBZ1uITiazNv4t5gkmfRIayy2p4aZgbG_mOz2fALkcuGuBk7knD4zS_WqSuNQ7VDryiFFO8ImXjudRrbLfmKMz0b68PYeT85g9CIN3ycsw">
+<span class="text-label-caps font-label-caps text-on-surface hidden lg:block">J. Anderson</span>
+</div>
+</div>
+</header>
+<!-- CHAT LAYOUT GRID -->
+<div class="flex-1 flex overflow-hidden">
+<!-- THREAD HISTORY SIDEBAR -->
+<div class="w-72 bg-surface-container-lowest border-r border-glass-border flex flex-col p-4 space-y-6 overflow-y-auto">
+<div class="space-y-4">
+<h3 class="text-label-caps font-label-caps text-primary/60 px-2">Project: Helios</h3>
+<div class="space-y-1">
+<div class="p-3 bg-surface-container-high rounded-lg cursor-pointer border-l-2 border-primary">
+<p class="text-body-sm font-body-sm text-on-surface line-clamp-1">Vector DB Optimization</p>
+<span class="text-[10px] text-on-surface-variant font-code-sm">12:04 PM</span>
+</div>
+<div class="p-3 hover:bg-surface-container-low rounded-lg cursor-pointer transition-colors">
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-1">Telemetry Script Debug</p>
+<span class="text-[10px] text-on-surface-variant/40 font-code-sm">09:15 AM</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-label-caps font-label-caps text-primary/60 px-2">Knowledge Bases</h3>
+<div class="space-y-1">
+<div class="p-3 hover:bg-surface-container-low rounded-lg cursor-pointer flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-status-safe text-sm">database</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Global Atlas</span>
+</div>
+<span class="text-[10px] bg-status-safe/10 text-status-safe px-1 rounded">Active</span>
+</div>
+<div class="p-3 hover:bg-surface-container-low rounded-lg cursor-pointer flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-on-surface-variant/40 text-sm">token</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant/40">Market Specs</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CHAT AREA -->
+<div class="flex-1 flex flex-col bg-background relative">
+<!-- Message History -->
+<div class="flex-1 overflow-y-auto p-margin-desktop space-y-8 scroll-smooth">
+<!-- User Message -->
+<div class="flex flex-col items-end space-y-2">
+<div class="max-w-[80%] bg-surface-container-high px-5 py-4 rounded-xl rounded-tr-none border border-glass-border">
+<p class="text-body-lg font-body-lg text-on-surface">Initiate performance audit of the Helios-4 module. I need a breakdown of the latency spikes in the cross-region sync.</p>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface-variant/40">User // 14:40:21</span>
+</div>
+<!-- Telemetry Flow -->
+<div class="border-l-2 border-primary/20 ml-4 pl-6 py-2 space-y-3">
+<div class="flex items-center space-x-3 text-status-safe">
+<span class="material-symbols-outlined text-sm animate-spin">sync</span>
+<span class="font-code-sm text-code-sm uppercase tracking-wider">Executing: fetch_telemetry_logs_v2.py</span>
+</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant/60 bg-terminal-black/50 p-3 rounded-lg border border-outline-variant/30">
+                            [SYS] Connecting to node helios-east-01...<br>
+                            [SYS] Parsing 4.2GB logs...<br>
+                            [SYS] Latency peak detected at 14:38:12 (412ms)
+                        </div>
+</div>
+<!-- Assistant Response -->
+<div class="flex flex-col items-start space-y-2">
+<div class="max-w-[85%] glass-panel px-6 py-5 rounded-xl rounded-tl-none relative overflow-hidden">
+<!-- Glowing accent -->
+<div class="absolute top-0 left-0 w-1 h-full bg-primary shadow-[0_0_10px_rgba(255,107,0,0.5)]"></div>
+<p class="text-body-lg font-body-lg text-on-surface mb-4">Audit complete. The bottleneck is located in the **Global Consensus Layer**. Node 04 is timing out during the validation handshake.</p>
+<!-- Code Block -->
+<div class="bg-terminal-black rounded-lg p-4 border border-outline-variant relative group">
+<div class="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">content_copy</span>
+</div>
+<div class="text-label-caps font-label-caps text-primary/40 mb-2">PYTHON // SUGGESTED_FIX.PY</div>
+<pre class="font-code-sm text-code-sm text-status-safe overflow-x-auto"><code>def resolve_handshake_timeout(node_id):
+    system.set_priority(node_id, level="CRITICAL")
+    retry_policy = system.get_policy("high_latency")
+    return system.redeploy_consensus_shards(node_id, policy=retry_policy)</code></pre>
+</div>
+</div>
+<span class="text-label-caps font-label-caps text-primary/60">ODIN // 14:41:05</span>
+</div>
+</div>
+<!-- INPUT AREA -->
+<div class="p-margin-desktop bg-surface-container-lowest/80 backdrop-blur-md border-t border-glass-border">
+<div class="relative max-w-5xl mx-auto flex items-end space-x-4">
+<div class="flex-1 relative">
+<textarea class="w-full bg-terminal-black border border-outline-variant focus:border-primary rounded-xl px-6 py-4 text-on-surface font-body-lg resize-none placeholder:text-on-surface-variant/20 focus:ring-1 focus:ring-primary/30 transition-all" placeholder="Command the system..." rows="1"></textarea>
+<div class="absolute right-4 bottom-4 flex items-center space-x-3">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">attach_file</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">mic</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary-container h-14 w-14 rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-transform shadow-[0_0_20px_rgba(255,107,0,0.2)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+<div class="mt-3 flex justify-center items-center space-x-4">
+<div class="flex items-center space-x-2 text-[10px] font-label-caps text-on-surface-variant/40">
+<span class="w-2 h-2 rounded-full bg-status-safe"></span>
+<span class="">Secure Channel Encrypted</span>
+</div>
+<div class="h-1 w-1 rounded-full bg-on-surface-variant/20"></div>
+<div class="flex items-center space-x-2 text-[10px] font-label-caps text-on-surface-variant/40">
+<span class="material-symbols-outlined text-[12px]">bolt</span>
+<span class="">Memory Cache 4.2GB</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT CONTEXT PANEL -->
+<div class="w-80 border-l border-glass-border bg-surface-container-lowest hidden xl:flex flex-col p-6 space-y-8">
+<!-- Context Header -->
+<div class="space-y-4">
+<h2 class="text-label-caps font-label-caps text-primary tracking-widest border-b border-primary/20 pb-2">ACTIVE CONTEXT</h2>
+<div class="bg-surface-container-high rounded-xl p-4 border border-outline-variant/30">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-caps font-label-caps text-on-surface-variant">Project</span>
+<span class="text-label-caps font-label-caps text-primary">Helios</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">Global infrastructure scaling and latency remediation.</p>
+</div>
+</div>
+<!-- Vector Memories -->
+<div class="space-y-4">
+<h2 class="text-label-caps font-label-caps text-primary tracking-widest border-b border-primary/20 pb-2">ACTIVE MEMORIES</h2>
+<div class="space-y-2">
+<div class="flex items-start space-x-3 p-2 group cursor-help">
+<span class="material-symbols-outlined text-tertiary text-sm mt-1">psychology</span>
+<div>
+<p class="text-body-sm font-body-sm text-on-surface">Cross-Region Latency</p>
+<p class="text-[10px] text-on-surface-variant group-hover:text-tertiary transition-colors">Recall weight: 0.942</p>
+</div>
+</div>
+<div class="flex items-start space-x-3 p-2 group cursor-help">
+<span class="material-symbols-outlined text-tertiary text-sm mt-1">psychology</span>
+<div>
+<p class="text-body-sm font-body-sm text-on-surface">Shard Re-deployment</p>
+<p class="text-[10px] text-on-surface-variant group-hover:text-tertiary transition-colors">Recall weight: 0.811</p>
+</div>
+</div>
+</div>
+</div>
+<!-- System Stats -->
+<div class="mt-auto space-y-4">
+<div class="flex justify-between items-end">
+<h2 class="text-label-caps font-label-caps text-on-surface-variant opacity-60">ODIN CAPACITY</h2>
+<span class="text-label-caps font-label-caps text-primary">82%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[82%] shadow-[0_0_10px_rgba(255,107,0,0.5)]"></div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div class="bg-terminal-black border border-outline-variant p-3 rounded-lg">
+<p class="text-label-caps font-label-caps text-on-surface-variant opacity-40">Latency</p>
+<p class="text-code-sm font-code-sm text-status-safe">12ms</p>
+</div>
+<div class="bg-terminal-black border border-outline-variant p-3 rounded-lg">
+<p class="text-label-caps font-label-caps text-on-surface-variant opacity-40">Uptime</p>
+<p class="text-code-sm font-code-sm text-status-safe">99.9%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TERMINAL CONSOLE (BOTTOM BAR) -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-280px)] h-12 bg-terminal-black/90 border-t border-glass-border flex items-center px-6 justify-between z-50">
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-status-safe text-sm" data-icon="terminal">terminal</span>
+<span class="text-code-sm font-code-sm text-status-safe font-bold">READY</span>
+<span class="w-[2px] h-4 bg-primary terminal-blink"></span>
+</div>
+<div class="text-code-sm font-code-sm text-on-surface-variant/40 truncate hidden md:block">
+                    [SYS:LOG] 14:42:11 Kernel handshake authorized via HERMES_ORB
+                </div>
+</div>
+<div class="flex items-center space-x-8">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-on-surface-variant/60 text-sm" data-icon="developer_board">developer_board</span>
+<span class="text-code-sm font-code-sm text-on-surface-variant/60">THINKING_V4_ENGINE</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-on-surface-variant/60 text-sm" data-icon="payments">payments</span>
+<span class="text-code-sm font-code-sm text-on-surface-variant/60">$0.0021 / TOK</span>
+</div>
+</div>
+</footer>
+</main>
+<!-- FAB Tool Execution (Safety Intercept Prototype) -->
+<div class="hidden fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] z-[100]" id="safety-gate">
+<div class="bg-surface-container-high border-2 border-primary rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+<div class="bg-primary p-4 flex justify-between items-center">
+<div class="flex items-center space-x-2 text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+<h4 class="font-headline-md text-headline-md tracking-tighter">GATE LOCKED</h4>
+</div>
+<button class="text-on-primary/60 hover:text-on-primary" onclick="document.getElementById('safety-gate').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 space-y-4">
+<p class="text-body-lg font-body-lg text-on-surface">ODIN is requesting permission to execute <span class="text-primary font-bold">REDEPLOY_SHARDS</span> on production clusters.</p>
+<div class="bg-terminal-black p-3 rounded-lg border border-outline-variant font-code-sm text-on-surface-variant/80">
+                    Target: helios-east-01..08<br>
+                    Impact: High (Service Interruption &lt; 200ms)<br>
+                    Auth Level: Level 4 Required
+                </div>
+<button class="w-full bg-primary py-4 rounded-lg font-headline-md text-headline-md text-on-primary hover:scale-[1.02] active:scale-95 transition-transform shadow-[0_4px_15px_rgba(255,107,0,0.4)]">
+                    CONFIRM EXECUTION
+                </button>
+</div>
+</div>
+</div>
+<script>
+        // Micro-interactions and simulation
+        document.addEventListener('keydown', (e) => {
+            // Simulate CMD+K for safety gate
+            if (e.metaKey && e.key === 'k') {
+                e.preventDefault();
+                const gate = document.getElementById('safety-gate');
+                gate.classList.toggle('hidden');
+            }
+        });
+
+        // Auto-expand textarea
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Log entry simulation
+        setInterval(() => {
+            const logs = [
+                "Memory compression active...",
+                "Scanning vector subspace...",
+                "Hermes pulse synchronized",
+                "Heartbeat ping: 0.4ms",
+                "Ingesting active context variables..."
+            ];
+            const logText = document.querySelector('.truncate');
+            const randomLog = logs[Math.floor(Math.random() * logs.length)];
+            const time = new Date().toLocaleTimeString('en-GB', { hour12: false });
+            logText.innerHTML = `[SYS:LOG] ${time} ${randomLog}`;
+        }, 5000);
+    </script>
+
+</body></html>

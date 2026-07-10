@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ODIN | File System &amp; Knowledge Base</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e5e2e1",
+                        "tertiary-container": "#c78f00",
+                        "system-amber": "#FFB800",
+                        "primary-fixed-dim": "#ffb693",
+                        "on-primary-container": "#572000",
+                        "surface-variant": "#353535",
+                        "background": "#131313",
+                        "surface": "#131313",
+                        "on-secondary-container": "#bab8b7",
+                        "on-tertiary": "#412d00",
+                        "on-tertiary-fixed-variant": "#5e4200",
+                        "primary-container": "#ff6b00",
+                        "on-secondary": "#313030",
+                        "primary-fixed": "#ffdbcc",
+                        "tertiary": "#ffba20",
+                        "on-primary": "#561f00",
+                        "surface-dim": "#131313",
+                        "terminal-black": "#050505",
+                        "status-safe": "#00E676",
+                        "outline": "#a98a7d",
+                        "tertiary-fixed-dim": "#ffba20",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-bright": "#393939",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed": "#271900",
+                        "glass-border": "rgba(255, 107, 0, 0.15)",
+                        "outline-variant": "#5a4136",
+                        "secondary": "#c9c6c5",
+                        "on-primary-fixed": "#351000",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed-variant": "#474646",
+                        "surface-tint": "#ffb693",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-highest": "#353535",
+                        "surface-container-low": "#1c1b1b",
+                        "status-critical": "#FF3D00",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary-container": "#4a4949",
+                        "error": "#ffb4ab",
+                        "surface-container": "#20201f",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface-variant": "#e2bfb0",
+                        "on-tertiary-container": "#422d00",
+                        "primary": "#ffb693",
+                        "secondary-fixed-dim": "#c9c6c5",
+                        "tertiary-fixed": "#ffdea8",
+                        "inverse-primary": "#a04100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "12px",
+                        "sidebar-width": "280px",
+                        "unit": "4px",
+                        "margin-desktop": "24px",
+                        "gutter": "16px",
+                        "console-height": "200px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0D0D0D;
+            color: #e5e2e1;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Hermes Orb Animation */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; filter: blur(2px) drop-shadow(0 0 5px #ff6b00); }
+            50% { transform: scale(1.1); opacity: 1; filter: blur(0px) drop-shadow(0 0 20px #ff6b00); }
+        }
+        .hermes-orb {
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #353535; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff6b00; }
+
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 107, 0, 0.1);
+        }
+
+        .terminal-blink::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .drag-zone-active {
+            border-color: #ff6b00 !important;
+            background: rgba(255, 107, 0, 0.05) !important;
+        }
+    </style>
+</head>
+<body class="flex h-screen w-screen bg-background">
+<!-- SideNavBar (The Anchor) -->
+<aside class="flex flex-col h-screen w-sidebar-width left-0 bg-surface-container-lowest dark:bg-terminal-black border-r border-outline-variant dark:border-glass-border py-margin-desktop space-y-gutter z-50">
+<div class="px-6 mb-8">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-primary-container hermes-orb flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-sm">settings_input_component</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-tight">ODIN</h1>
+<p class="text-label-caps font-label-caps text-status-safe opacity-80 uppercase tracking-widest">System Active</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 overflow-y-auto">
+<!-- Dashboard -->
+<a class="flex items-center space-x-3 p-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl hover:bg-surface-container-high group transition-all duration-200" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-label-caps font-label-caps">Dashboard</span>
+</a>
+<!-- Chat -->
+<a class="flex items-center space-x-3 p-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl hover:bg-surface-container-high group" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="text-label-caps font-label-caps">Chat</span>
+</a>
+<!-- Tasks -->
+<a class="flex items-center space-x-3 p-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl hover:bg-surface-container-high group" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span class="text-label-caps font-label-caps">Tasks</span>
+</a>
+<!-- Files (ACTIVE) -->
+<a class="flex items-center space-x-3 p-3 bg-primary-container text-on-primary-container rounded-xl shadow-[0_0_15px_rgba(255,107,0,0.3)] scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-label-caps font-label-caps">Files</span>
+</a>
+<!-- Knowledge -->
+<a class="flex items-center space-x-3 p-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl hover:bg-surface-container-high group" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-label-caps font-label-caps">Knowledge</span>
+</a>
+<!-- Learning -->
+<a class="flex items-center space-x-3 p-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl hover:bg-surface-container-high group" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-label-caps font-label-caps">Learning</span>
+</a>
+</nav>
+<div class="px-4 pt-4 border-t border-glass-border space-y-2">
+<a class="flex items-center space-x-3 p-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">sync</span>
+<span class="text-label-caps font-label-caps">Sync</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-on-surface-variant hover:text-primary transition-colors rounded-xl hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-caps font-label-caps">Settings</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 relative">
+<!-- TopAppBar -->
+<header class="h-16 flex justify-between items-center w-full px-margin-desktop bg-background/80 backdrop-blur-md border-b border-glass-border z-40">
+<div class="flex items-center space-x-8">
+<span class="text-label-caps font-label-caps text-tertiary-container tracking-[0.2em]">ORCHESTRATOR // FS-KB</span>
+<nav class="hidden md:flex space-x-6">
+<a class="text-on-surface-variant hover:text-primary cursor-pointer transition-colors text-label-caps font-label-caps" href="#">Development</a>
+<a class="text-on-surface-variant hover:text-primary cursor-pointer transition-colors text-label-caps font-label-caps" href="#">ThemisIQ</a>
+</nav>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative hidden lg:block">
+<input class="bg-terminal-black border border-glass-border text-on-surface text-body-sm px-4 py-1.5 w-64 focus:outline-none focus:border-primary-container transition-all placeholder:text-on-surface-variant/40" placeholder="Search knowledge..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1.5 text-on-surface-variant/40 text-lg">search</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary-container rounded-full ring-2 ring-background"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">schedule</span>
+</button>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high border border-glass-border overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a futuristic AI operator in high-contrast cinematic lighting with glowing orange ocular implants. The style is dark, sleek, and minimalist brutalism, set against a deep matte black backdrop with subtle digital artifacts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnBQa80A9ZIpdSXpOZNFhmeyhG9qh4BIbCymfqfbMEK2z-JewVNx9jcRghiDkQtYlVE6x9RyDKWwyl_gCz4G0WCt0eBCaE8nMGXFel0Ydez8doxfj9hiN8ASnqu4eIY0k-cM6-eMYnnQyr-NwoaV94CgXRLABSlfzF7zekK8iVsaSG9upRpxk2jY4uZ_jPfZTMSbm_hm2tU7Ytas-CL4SlDUbKE9tnaj0I7Bxc1hdg4VvdtU_BusDgMg"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content (Two-Pane File Browser) -->
+<main class="flex-1 flex overflow-hidden p-6 gap-6 relative">
+<!-- Left Pane: Directory Tree -->
+<div class="w-72 glass-panel rounded-xl flex flex-col overflow-hidden">
+<div class="p-4 border-b border-glass-border flex justify-between items-center bg-surface-container-low">
+<span class="text-label-caps font-label-caps text-primary opacity-80">Directory Root</span>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-sm">create_new_folder</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 font-code-sm text-on-surface-variant">
+<div class="space-y-1">
+<div class="flex items-center space-x-2 p-1.5 hover:bg-surface-container-high rounded cursor-pointer group">
+<span class="material-symbols-outlined text-base text-primary/60">folder_open</span>
+<span class="text-primary font-bold">/ODIN_ROOT</span>
+</div>
+<div class="ml-4 space-y-1">
+<div class="flex items-center space-x-2 p-1.5 hover:bg-surface-container-high rounded cursor-pointer group">
+<span class="material-symbols-outlined text-base group-hover:text-primary">inbox</span>
+<span>Inbox</span>
+<span class="ml-auto text-[10px] bg-primary-container/20 px-1 rounded text-primary-fixed-dim">12</span>
+</div>
+<div class="flex items-center space-x-2 p-1.5 bg-surface-container-high text-on-surface rounded cursor-pointer group border-l-2 border-primary-container">
+<span class="material-symbols-outlined text-base text-primary">folder</span>
+<span>Knowledge_Base</span>
+</div>
+<div class="ml-4 space-y-1">
+<div class="flex items-center space-x-2 p-1.5 hover:bg-surface-container-high rounded cursor-pointer">
+<span class="material-symbols-outlined text-base text-on-surface-variant/50">folder</span>
+<span>Research</span>
+</div>
+<div class="flex items-center space-x-2 p-1.5 hover:bg-surface-container-high rounded cursor-pointer">
+<span class="material-symbols-outlined text-base text-on-surface-variant/50">folder</span>
+<span>Intelligence</span>
+</div>
+</div>
+<div class="flex items-center space-x-2 p-1.5 hover:bg-surface-container-high rounded cursor-pointer group">
+<span class="material-symbols-outlined text-base group-hover:text-primary">rocket_launch</span>
+<span>Projects</span>
+</div>
+<div class="flex items-center space-x-2 p-1.5 hover:bg-surface-container-high rounded cursor-pointer group">
+<span class="material-symbols-outlined text-base group-hover:text-primary">history</span>
+<span>Archive</span>
+</div>
+<div class="flex items-center space-x-2 p-1.5 hover:bg-surface-container-high rounded cursor-pointer group text-status-critical/70 hover:text-status-critical">
+<span class="material-symbols-outlined text-base">lock</span>
+<span>Encrypted_Vault</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Pane: File Grid & Workspace -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Browser Controls -->
+<div class="mb-4 flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-1 text-on-surface-variant text-body-sm bg-surface-container-low px-3 py-1 rounded border border-glass-border">
+<span class="opacity-50">Root</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary">Knowledge_Base</span>
+</div>
+<div class="flex space-x-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-1.5 hover:bg-surface-container-high rounded transition-colors text-primary border border-primary/20">
+<span class="material-symbols-outlined">list</span>
+</button>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<div class="flex items-center space-x-2 text-status-safe bg-status-safe/10 px-3 py-1 rounded-full border border-status-safe/20 text-label-caps">
+<span class="w-2 h-2 bg-status-safe rounded-full animate-pulse"></span>
+<span>Syncthing: Ready</span>
+</div>
+<button class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-lg text-label-caps hover:brightness-110 active:scale-95 transition-all flex items-center space-x-2 shadow-[0_0_15px_rgba(255,107,0,0.2)]">
+<span class="material-symbols-outlined text-sm">upload</span>
+<span>UPLOAD NEW</span>
+</button>
+</div>
+</div>
+<!-- Grid View -->
+<div class="flex-1 glass-panel rounded-xl overflow-y-auto p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 border-dashed border-2 border-transparent transition-all" id="drop-zone">
+<!-- File Card 1 (Parsing Status) -->
+<div class="bg-terminal-black/40 border border-glass-border p-4 rounded-lg group hover:border-primary/40 transition-all cursor-pointer relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container/20 rounded-lg">
+<span class="material-symbols-outlined text-error">picture_as_pdf</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] bg-system-amber/10 text-system-amber border border-system-amber/20 px-1.5 py-0.5 rounded uppercase font-bold tracking-tighter">Parsing</span>
+<span class="text-label-caps opacity-40 mt-1">4.2MB</span>
+</div>
+</div>
+<h4 class="text-on-surface font-semibold text-body-sm truncate mb-1">Q3_Security_Audit.pdf</h4>
+<p class="text-on-surface-variant/40 text-[11px] font-code-sm">Modified: 2h ago</p>
+<div class="mt-4 h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-system-amber w-2/3 animate-pulse"></div>
+</div>
+</div>
+<!-- File Card 2 (Indexed Status) -->
+<div class="bg-terminal-black/40 border border-glass-border p-4 rounded-lg group hover:border-primary/40 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] bg-status-safe/10 text-status-safe border border-status-safe/20 px-1.5 py-0.5 rounded uppercase font-bold tracking-tighter">Indexed</span>
+<span class="text-label-caps opacity-40 mt-1">12KB</span>
+</div>
+</div>
+<h4 class="text-on-surface font-semibold text-body-sm truncate mb-1">Neural_Network_Specs.md</h4>
+<p class="text-on-surface-variant/40 text-[11px] font-code-sm">Modified: 1d ago</p>
+</div>
+<!-- File Card 3 -->
+<div class="bg-terminal-black/40 border border-glass-border p-4 rounded-lg group hover:border-primary/40 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary">javascript</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] bg-surface-container-highest text-on-surface-variant border border-glass-border px-1.5 py-0.5 rounded uppercase font-bold tracking-tighter">Static</span>
+<span class="text-label-caps opacity-40 mt-1">84KB</span>
+</div>
+</div>
+<h4 class="text-on-surface font-semibold text-body-sm truncate mb-1">main_orchestrator.js</h4>
+<p class="text-on-surface-variant/40 text-[11px] font-code-sm">Modified: 4h ago</p>
+</div>
+<!-- File Card 4 -->
+<div class="bg-terminal-black/40 border border-glass-border p-4 rounded-lg group hover:border-primary/40 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-blue-500/10 rounded-lg">
+<span class="material-symbols-outlined text-blue-400">table_chart</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] bg-status-safe/10 text-status-safe border border-status-safe/20 px-1.5 py-0.5 rounded uppercase font-bold tracking-tighter">Indexed</span>
+<span class="text-label-caps opacity-40 mt-1">1.2MB</span>
+</div>
+</div>
+<h4 class="text-on-surface font-semibold text-body-sm truncate mb-1">User_Interaction_Logs.csv</h4>
+<p class="text-on-surface-variant/40 text-[11px] font-code-sm">Modified: 15m ago</p>
+</div>
+<!-- Add New Placeholder -->
+<div class="border border-dashed border-glass-border p-4 rounded-lg flex flex-col items-center justify-center text-on-surface-variant/40 hover:text-primary/60 hover:bg-primary/5 hover:border-primary/40 transition-all cursor-pointer group">
+<span class="material-symbols-outlined text-3xl mb-2 group-hover:scale-110 transition-transform">add_circle</span>
+<span class="text-label-caps font-label-caps">Drag &amp; Drop Here</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Console Panel -->
+<footer class="h-console-height bg-terminal-black/90 border-t border-glass-border flex flex-col w-full p-4 relative z-40">
+<div class="flex items-center justify-between mb-2 pb-2 border-b border-white/5">
+<div class="flex items-center space-x-4">
+<span class="text-status-safe font-bold text-code-sm uppercase flex items-center">
+<span class="w-1.5 h-1.5 bg-status-safe rounded-full mr-2"></span>
+                        LIVE LOGS: INGESTION PIPELINE
+                    </span>
+<span class="text-on-surface-variant/40 text-code-sm">PID: 8821</span>
+</div>
+<div class="flex space-x-4 text-code-sm">
+<span class="text-on-surface-variant/60">TASKS: 12</span>
+<span class="text-status-safe">SYNCED: 100%</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto font-code-sm space-y-1 text-on-surface-variant/80">
+<p class="text-on-surface-variant/40">[14:22:10] Initializing filesystem watcher on /ODIN_ROOT/Knowledge_Base...</p>
+<p class="text-status-safe">[14:22:12] File detected: Q3_Security_Audit.pdf - Starting ingestion.</p>
+<p class="text-system-amber">[14:22:15] PDF Parsing: Page 14/42 processed. Optical Character Recognition active.</p>
+<p class="text-on-surface-variant/40">[14:22:18] Indexing Neural_Network_Specs.md into vector database.</p>
+<p class="text-primary">[14:22:20] Sync check: 4 nodes reached. Local manifest updated.</p>
+<p class="text-on-surface/90 terminal-blink">root@odin-fs-kb:~$ <span class="opacity-50 italic">awaiting command...</span></p>
+</div>
+</footer>
+</div>
+<!-- Right Metrics Panel (Modular Monolith) -->
+<aside class="w-80 bg-surface-container-low border-l border-glass-border p-6 space-y-6 hidden xl:flex flex-col overflow-y-auto">
+<h3 class="text-label-caps font-label-caps text-primary border-b border-primary/20 pb-2">SYSTEM METRICS</h3>
+<!-- Knowledge Density Widget -->
+<div class="space-y-4">
+<div class="bg-terminal-black p-4 rounded-lg border border-glass-border">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-caps text-on-surface-variant">Knowledge Density</span>
+<span class="text-status-safe font-bold">92%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[92%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant/40 mt-2">Vector embedding coverage across all nodes.</p>
+</div>
+<div class="bg-terminal-black p-4 rounded-lg border border-glass-border">
+<div class="flex justify-between items-center mb-2">
+<span class="text-label-caps text-on-surface-variant">Sync Latency</span>
+<span class="text-system-amber font-bold">42ms</span>
+</div>
+<div class="flex items-center space-x-1 h-8">
+<div class="flex-1 bg-primary/20 h-2 rounded-sm"></div>
+<div class="flex-1 bg-primary/40 h-4 rounded-sm"></div>
+<div class="flex-1 bg-primary/30 h-3 rounded-sm"></div>
+<div class="flex-1 bg-primary/60 h-6 rounded-sm"></div>
+<div class="flex-1 bg-primary/80 h-8 rounded-sm"></div>
+<div class="flex-1 bg-primary h-5 rounded-sm"></div>
+<div class="flex-1 bg-primary/50 h-4 rounded-sm"></div>
+</div>
+</div>
+</div>
+<!-- Tool Execution Intercept Placeholder -->
+<div class="glass-panel p-4 rounded-xl border-primary/30 border-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-1 bg-primary-container text-on-primary-container text-[8px] font-bold uppercase tracking-tighter">Gate Locked</div>
+<h4 class="text-label-caps text-primary mb-2">SECURITY INTERCEPT</h4>
+<p class="text-body-sm text-on-surface-variant mb-4">Pending action: "Purge Archive/Temp_2023"</p>
+<button class="w-full bg-primary-container text-on-primary-container py-2 rounded font-bold text-label-caps hover:bg-primary transition-all active:scale-95">
+                APPROVE EXECUTION
+            </button>
+</div>
+<div class="flex-1"></div>
+<div class="p-4 bg-surface-container-high rounded-xl border border-glass-border flex items-center space-x-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div>
+<p class="text-label-caps text-on-surface">HERMES CORE</p>
+<p class="text-[10px] text-on-surface-variant/60">Thinking: Ingestion Priority</p>
+</div>
+</div>
+</aside>
+<script>
+        const dropZone = document.getElementById('drop-zone');
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-zone-active');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-zone-active');
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            alert('File staging initiated. Proceeding to Knowledge Parsing.');
+        });
+
+        // Simple mock of terminal text adding
+        const consoleLog = document.querySelector('footer div:nth-child(2)');
+        setInterval(() => {
+            const time = new Date().toLocaleTimeString([], { hour12: false });
+            const log = document.createElement('p');
+            log.className = "text-on-surface-variant/30";
+            log.textContent = `[${time}] System heartbeat check: Node ${Math.floor(Math.random() * 5)} responsive.`;
+            consoleLog.insertBefore(log, consoleLog.lastElementChild);
+            if (consoleLog.children.length > 20) consoleLog.removeChild(consoleLog.firstElementChild);
+            consoleLog.scrollTop = consoleLog.scrollHeight;
+        }, 12000);
+    </script>
+</body></html>

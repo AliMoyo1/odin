@@ -1,0 +1,430 @@
+<!DOCTYPE html><html lang="en" class="dark" style=""><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#e5e2e1",
+                    "tertiary-container": "#c78f00",
+                    "system-amber": "#FFB800",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-primary-container": "#572000",
+                    "surface-variant": "#353535",
+                    "background": "#131313",
+                    "surface": "#131313",
+                    "on-secondary-container": "#bab8b7",
+                    "on-tertiary": "#412d00",
+                    "on-tertiary-fixed-variant": "#5e4200",
+                    "primary-container": "#ff6b00",
+                    "on-secondary": "#313030",
+                    "primary-fixed": "#ffdbcc",
+                    "tertiary": "#ffba20",
+                    "on-primary": "#561f00",
+                    "surface-dim": "#131313",
+                    "terminal-black": "#050505",
+                    "status-safe": "#00E676",
+                    "outline": "#a98a7d",
+                    "tertiary-fixed-dim": "#ffba20",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-bright": "#393939",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-tertiary-fixed": "#271900",
+                    "glass-border": "rgba(255, 107, 0, 0.15)",
+                    "outline-variant": "#5a4136",
+                    "secondary": "#c9c6c5",
+                    "on-primary-fixed": "#351000",
+                    "inverse-on-surface": "#313030",
+                    "on-secondary-fixed-variant": "#474646",
+                    "surface-tint": "#ffb693",
+                    "on-error": "#690005",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "inverse-surface": "#e5e2e1",
+                    "on-error-container": "#ffdad6",
+                    "on-surface": "#e5e2e1",
+                    "surface-container-highest": "#353535",
+                    "surface-container-low": "#1c1b1b",
+                    "status-critical": "#FF3D00",
+                    "secondary-fixed": "#e5e2e1",
+                    "secondary-container": "#4a4949",
+                    "error": "#ffb4ab",
+                    "surface-container": "#20201f",
+                    "surface-container-high": "#2a2a2a",
+                    "on-surface-variant": "#e2bfb0",
+                    "on-tertiary-container": "#422d00",
+                    "primary": "#ffb693",
+                    "secondary-fixed-dim": "#c9c6c5",
+                    "tertiary-fixed": "#ffdea8",
+                    "inverse-primary": "#a04100"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "12px",
+                    "sidebar-width": "280px",
+                    "unit": "4px",
+                    "margin-desktop": "24px",
+                    "gutter": "16px",
+                    "console-height": "200px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["JetBrains Mono"],
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-md": ["JetBrains Mono"],
+                    "code-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "code-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="bg-background text-on-surface font-body-lg overflow-hidden h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface-container-lowest dark:bg-terminal-black border-r border-outline-variant dark:border-glass-border flex flex-col py-margin-desktop space-y-gutter z-50">
+<div class="px-6 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/20 shadow-[0_0_15px_rgba(255,107,0,0.3)] animate-pulse transition-all">
+  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoKrnPF7nbm_oUFucoXcGs7yIfymj3MMPfjVVAeIN9h5GAsJP664VXYI3giLlrgjB5mckqX0nrNMG4qsEZzwsiDGmL_z-YevFFEiO_KjxoIwR8P05LABfRuw0foAr2maEyVIYYQHwHPH8fHx6Ww3AILOj06ro83-Rx58fNWpz_OaswOe4xBp2043DpNiUNfRn5p6foKQx7kOp-dR9TOg28jl2zO4LGKI_easJ3TVGxllcEyiMKKQ8ebg" alt="Hermes Intelligence Orb" class="w-full h-full object-cover">
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none">ODIN</h1>
+<p class="text-label-caps font-label-caps text-on-surface-variant/60">System Active</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 pt-6">
+<!-- Active Tab: Dashboard -->
+<a href="#" class="bg-primary-container text-on-primary-container rounded-xl shadow-[0_0_15px_rgba(255,107,0,0.3)] flex items-center px-4 py-3 space-x-3 scale-95 transition-all">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-label-caps font-label-caps">Dashboard</span>
+</a>
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high flex items-center px-4 py-3 space-x-3 rounded-xl">
+<span class="material-symbols-outlined">forum</span>
+<span class="text-label-caps font-label-caps">Chat</span>
+</a>
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high flex items-center px-4 py-3 space-x-3 rounded-xl">
+<span class="material-symbols-outlined">checklist</span>
+<span class="text-label-caps font-label-caps">Tasks</span>
+</a>
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high flex items-center px-4 py-3 space-x-3 rounded-xl">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-label-caps font-label-caps">Files</span>
+</a>
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high flex items-center px-4 py-3 space-x-3 rounded-xl">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-label-caps font-label-caps">Knowledge</span>
+</a>
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-high flex items-center px-4 py-3 space-x-3 rounded-xl">
+<span class="material-symbols-outlined">school</span>
+<span class="text-label-caps font-label-caps">Learning</span>
+</a>
+</nav>
+<div class="px-4 space-y-2 border-t border-outline-variant pt-6">
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors flex items-center px-4 py-2 space-x-3">
+<span class="material-symbols-outlined">sync</span>
+<span class="text-label-caps font-label-caps">Sync</span>
+</a>
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors flex items-center px-4 py-2 space-x-3">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-caps font-label-caps">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Top AppBar -->
+<header class="fixed top-0 left-sidebar-width right-0 h-16 bg-background/80 backdrop-blur-md border-b border-glass-border flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center space-x-8">
+<div class="text-label-caps font-label-caps text-tertiary-container font-bold tracking-widest">ORCHESTRATOR // SYSTEM_V2.4</div>
+<div class="hidden lg:flex space-x-6">
+<a href="#" class="text-primary border-b-2 border-primary pb-1 text-label-caps font-label-caps">Development</a>
+<a href="#" class="text-on-surface-variant hover:text-primary transition-colors text-label-caps font-label-caps">ThemisIQ</a>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative">
+<input type="text" placeholder="QUERY_SYSTEM..." class="bg-surface-container-low border-none rounded-full px-4 py-1 text-code-sm text-primary w-64 focus:ring-1 focus:ring-primary focus:ring-primary-container">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:text-primary active:opacity-80 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary active:opacity-80 transition-all">
+<span class="material-symbols-outlined">schedule</span>
+</button>
+<div class="hermes-orb w-8 h-8 rounded-full bg-primary-container flex items-center justify-center cursor-pointer shadow-[0_0_15px_rgba(255,107,0,0.4)]"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoKrnPF7nbm_oUFucoXcGs7yIfymj3MMPfjVVAeIN9h5GAsJP664VXYI3giLlrgjB5mckqX0nrNMG4qsEZzwsiDGmL_z-YevFFEiO_KjxoIwR8P05LABfRuw0foAr2maEyVIYYQHwHPH8fHx6Ww3AILOj06ro83-Rx58fNWpz_OaswOe4xBp2043DpNiUNfRn5p6foKQx7kOp-dR9TOg28jl2zO4LGKI_easJ3TVGxllcEyiMKKQ8ebg" alt="Hermes Core" class="w-full h-full rounded-full object-cover animate-pulse"></div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-sidebar-width mt-16 p-6 h-[calc(100vh-16rem)] overflow-y-auto relative">
+<div class="scanline"></div>
+<!-- Header Section -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h2 id="greeting" class="font-headline-lg text-headline-lg text-primary uppercase tracking-tighter">GOOD MORNING, COMMANDER</h2>
+<div id="live-date" class="font-code-sm text-code-sm text-on-surface-variant/80 mt-1 uppercase"></div>
+</div>
+<div class="flex space-x-4">
+<div class="bg-surface-container px-4 py-2 border-l-2 border-primary">
+<div class="text-label-caps font-label-caps opacity-50">CPU LOAD</div>
+<div class="text-headline-md font-headline-md text-status-safe">12.4%</div>
+</div>
+<div class="bg-surface-container px-4 py-2 border-l-2 border-tertiary">
+<div class="text-label-caps font-label-caps opacity-50">UPTIME</div>
+<div class="text-headline-md font-headline-md">14D 02H</div>
+</div>
+</div>
+</div>
+<!-- Bento HUD Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Column 1: Priority Actions & Progress -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- High Priority Actions -->
+<section class="glass-panel p-4 rounded-xl">
+<div class="flex justify-between items-center mb-4 border-b border-glass-border pb-2">
+<h3 class="text-label-caps font-label-caps text-primary">PRIORITY_QUEUE</h3>
+<span class="material-symbols-outlined text-sm opacity-50">drag_handle</span>
+</div>
+<div class="space-y-3"><div class="bg-surface-container-high/40 p-2 flex items-center justify-between border-l-2 border-status-critical group cursor-move">
+  <div class="flex items-center space-x-2">
+    <div class="w-1.5 h-1.5 rounded-full bg-status-critical animate-pulse"></div>
+    <div>
+      <div class="text-[11px] font-bold leading-tight">SRV_NODE_04</div>
+      <div class="text-[9px] text-status-critical uppercase tracking-tighter">CRITICAL_LINK_FAIL</div>
+    </div>
+  </div>
+  <div class="flex items-center space-x-3">
+    <div class="text-right">
+      <div class="text-[9px] opacity-50">DUE</div>
+      <div class="text-[10px] font-mono">IMMEDIATE</div>
+    </div>
+    <button class="bg-primary text-on-primary text-[9px] px-2 py-0.5 font-bold rounded hover:bg-primary-container transition-colors">RESOLVE</button>
+  </div>
+</div>
+<div class="bg-surface-container-high/40 p-2 flex items-center justify-between border-l-2 border-primary group cursor-move">
+  <div class="flex items-center space-x-2">
+    <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+    <div>
+      <div class="text-[11px] font-bold leading-tight">FIN_SEC_07_RPT</div>
+      <div class="text-[9px] text-on-surface-variant uppercase tracking-tighter">MONTHLY_REVIEW</div>
+    </div>
+  </div>
+  <div class="flex items-center space-x-3">
+    <div class="text-right">
+      <div class="text-[9px] opacity-50">DUE</div>
+      <div class="text-[10px] font-mono">T-02:45</div>
+    </div>
+    <button class="border border-primary text-primary text-[9px] px-2 py-0.5 font-bold rounded hover:bg-primary/10 transition-colors">VIEW</button>
+  </div>
+</div>
+<div class="bg-surface-container-high/40 p-2 flex items-center justify-between border-l-2 border-on-surface-variant group cursor-move opacity-60">
+  <div class="flex items-center space-x-2">
+    <div class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></div>
+    <div>
+      <div class="text-[11px] font-bold leading-tight">HERMES_A_SYNC</div>
+      <div class="text-[9px] text-on-surface-variant uppercase tracking-tighter">AUTO_ROUTINE</div>
+    </div>
+  </div>
+  <div class="flex items-center space-x-3">
+    <div class="text-right">
+      <div class="text-[9px] opacity-50">DUE</div>
+      <div class="text-[10px] font-mono">15:00</div>
+    </div>
+    <span class="material-symbols-outlined text-sm opacity-40">lock_clock</span>
+  </div>
+</div></div>
+</section>
+<!-- Running Tasks (Progress Rings) -->
+<section class="glass-panel p-4 rounded-xl">
+<h3 class="text-label-caps font-label-caps text-primary mb-6">ACTIVE_STREAMS</h3>
+<div class="grid grid-cols-2 gap-4"><div class="flex flex-col items-center">
+  <div class="relative w-16 h-16">
+    <svg class="w-full h-full drop-shadow-[0_0_8px_rgba(255,182,147,0.3)]" viewBox="0 0 100 100">
+      <circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"></circle>
+      <circle class="progress-ring text-primary stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-dasharray="263.8" stroke-dashoffset="65.9" stroke-linecap="round" stroke-width="6"></circle>
+    </svg>
+    <div class="absolute inset-0 flex items-center justify-center text-[11px] font-mono font-bold text-primary">75.0%</div>
+  </div>
+  <div class="text-[9px] font-label-caps mt-2 tracking-widest opacity-60">DATA_SYNC</div>
+</div>
+<div class="flex flex-col items-center">
+  <div class="relative w-16 h-16">
+    <svg class="w-full h-full drop-shadow-[0_0_8px_rgba(0,230,118,0.2)]" viewBox="0 0 100 100">
+      <circle class="text-surface-container-highest stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="6"></circle>
+      <circle class="progress-ring text-status-safe stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-dasharray="263.8" stroke-dashoffset="158.3" stroke-linecap="round" stroke-width="6"></circle>
+    </svg>
+    <div class="absolute inset-0 flex items-center justify-center text-[11px] font-mono font-bold text-status-safe">40.2%</div>
+  </div>
+  <div class="text-[9px] font-label-caps mt-2 tracking-widest opacity-60">AI_TRAIN</div>
+</div></div>
+</section>
+</div>
+<!-- Column 2: Recent Files & Main Visualization -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Large Visualization -->
+<section class="glass-panel rounded-xl h-64 relative overflow-hidden flex items-center justify-center"><div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle, rgb(255, 182, 147) 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+<div class="z-10 text-center">
+<div class="text-headline-lg font-headline-lg text-primary tracking-widest drop-shadow-2xl">SYMMETRIC ENCRYPTION ACTIVE</div>
+<div class="text-label-caps font-label-caps opacity-60">Global Hub Status: Nominal // 0 packet loss</div>
+</div>
+</section>
+<!-- Recent Files Widget -->
+<section class="glass-panel p-4 rounded-xl">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-label-caps font-label-caps text-primary">RECENT_UPDATES</h3>
+<button class="text-[10px] text-primary hover:underline">VIEW_ALL</button>
+</div>
+<div class="overflow-x-auto"><table class="w-full text-left border-collapse">
+  <thead class="border-b border-glass-border">
+    <tr class="text-[9px] font-label-caps opacity-40">
+      <th class="py-2 px-1">OBJECT_ID</th>
+      <th class="py-2 px-1">SOURCE_NODE</th>
+      <th class="py-2 px-1">SIZE</th>
+      <th class="py-2 px-1">TIMESTAMP</th>
+      <th class="py-2 px-1 text-right">OPS</th>
+    </tr>
+  </thead>
+  <tbody class="text-[11px] font-mono">
+    <tr class="hover:bg-primary/5 transition-colors group border-b border-white/5">
+      <td class="py-2 px-1 flex items-center space-x-2">
+        <span class="material-symbols-outlined text-[14px] text-tertiary">terminal</span>
+        <span class="text-on-surface">vector_map_eu.json</span>
+      </td>
+      <td class="py-2 px-1 opacity-70">NODE_A_01</td>
+      <td class="py-2 px-1 opacity-70">1.2MB</td>
+      <td class="py-2 px-1 opacity-70">T-2M</td>
+      <td class="py-2 px-1 text-right">
+        <button class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-primary transition-colors">terminal_forth</button>
+      </td>
+    </tr>
+    <tr class="hover:bg-primary/5 transition-colors group border-b border-white/5">
+      <td class="py-2 px-1 flex items-center space-x-2">
+        <span class="material-symbols-outlined text-[14px] text-primary">key</span>
+        <span class="text-on-surface">user_auth_logs.csv</span>
+      </td>
+      <td class="py-2 px-1 opacity-70">SEC_MOD_04</td>
+      <td class="py-2 px-1 opacity-70">452KB</td>
+      <td class="py-2 px-1 opacity-70">T-15M</td>
+      <td class="py-2 px-1 text-right">
+        <button class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-primary transition-colors">terminal_forth</button>
+      </td>
+    </tr>
+    <tr class="hover:bg-primary/5 transition-colors group">
+      <td class="py-2 px-1 flex items-center space-x-2">
+        <span class="material-symbols-outlined text-[14px] text-status-safe">package_2</span>
+        <span class="text-on-surface">patch_deploy.zip</span>
+      </td>
+      <td class="py-2 px-1 opacity-70">DEVOPS_BOT</td>
+      <td class="py-2 px-1 opacity-70">14.8MB</td>
+      <td class="py-2 px-1 opacity-70">T-1H</td>
+      <td class="py-2 px-1 text-right">
+        <button class="material-symbols-outlined text-[16px] text-on-surface-variant hover:text-primary transition-colors">terminal_forth</button>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</section>
+</div>
+</div>
+</main>
+<!-- Terminal/Console/Chat Bottom Bar -->
+<footer class="fixed bottom-0 right-0 w-[calc(100%-280px)] h-console-height bg-terminal-black/95 border-t border-glass-border flex z-40">
+<!-- Terminal Output -->
+<div class="flex-1 p-4 font-mono text-[12px] text-status-safe/80 overflow-y-auto custom-scrollbar">
+<div class="flex items-center space-x-2 mb-2">
+<span class="text-primary-container font-bold">TERMINAL_01:</span>
+<span class="opacity-50">Initializing kernel modules... OK</span>
+</div>
+<div class="">[09:41:22] <span class="text-system-amber">WARN</span>: Unrecognized login attempt from IP 192.168.1.104</div>
+<div class="">[09:42:01] <span class="text-status-safe">INFO</span>: Backup completed successfully to Bucket_ODIN_01</div>
+<div class="">[09:42:15] <span class="text-status-safe">INFO</span>: Syncing knowledge base with Hermes core...</div>
+<div class="flex items-center space-x-1 mt-2">
+<span class="">odin@system:~$</span>
+<span class="w-2 h-4 bg-status-safe animate-pulse"></span>
+</div>
+</div>
+<!-- Compact Chat Bar -->
+<div class="w-80 border-l border-glass-border flex flex-col">
+<div class="p-3 border-b border-glass-border flex justify-between items-center">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-status-safe animate-ping"></span>
+<span class="text-label-caps font-label-caps">HERMES_DIRECT</span>
+</div>
+<span class="material-symbols-outlined text-sm opacity-50">expand_less</span>
+</div>
+<div class="flex-1 p-3 space-y-3 overflow-y-auto">
+<div class="flex flex-col">
+<span class="text-[10px] text-primary font-bold">HERMES</span>
+<p class="text-body-sm bg-surface-container-low p-2 rounded">Command received. Analyzing market volatility for Zone 4.</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-on-surface-variant font-bold">YOU</span>
+<p class="text-body-sm bg-primary/10 p-2 rounded border border-primary/20">Awaiting status update on deployment delta.</p>
+</div>
+</div>
+<div class="p-2 bg-surface-container-lowest">
+<div class="flex items-center space-x-2 bg-terminal-black border border-glass-border rounded px-2 py-1">
+<input class="flex-1 bg-transparent border-none text-code-sm focus:ring-0 placeholder:text-on-surface-variant/40" placeholder="Send instructions..." type="text">
+<button class="material-symbols-outlined text-primary text-sm">send</button>
+</div>
+</div>
+</div>
+</footer>
+<!-- FAB Tool Execution Intercept (Hidden by default, used for demos) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm hidden" id="safety-intercept">
+<div class="w-[400px] bg-terminal-black border-2 border-primary overflow-hidden shadow-[0_0_50px_rgba(255,107,0,0.4)]">
+<div class="bg-primary p-3 flex items-center space-x-3">
+<span class="material-symbols-outlined text-on-primary">lock</span>
+<span class="text-on-primary font-headline-md font-bold text-label-caps">GATE_LOCKED</span>
+</div>
+<div class="p-6 space-y-4">
+<p class="text-body-lg">Deployment of <span class="text-primary font-bold">PATCH_V2.5.1</span> requires manual override.</p>
+<div class="bg-surface-container p-3 text-code-sm opacity-80">
+                    Target: Global_CDN<br>
+                    Impact: High (12 Nodes)<br>
+                    Est. Downtime: &lt; 200ms
+                </div>
+<button class="w-full bg-primary text-on-primary font-bold py-3 hover:opacity-90 active:scale-95 transition-all">APPROVE_EXECUTION</button>
+<button class="w-full border border-outline-variant text-on-surface-variant py-2 text-label-caps" onclick="document.getElementById('safety-intercept').classList.add('hidden')">ABORT_SEQUENCE</button>
+</div>
+</div>
+</div>
+<script>
+        // Update live time and date
+        function updateClock() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+            const timeStr = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('live-date').innerText = `${dateStr} // ${timeStr} GMT-0500`;
+
+            const hour = now.getHours();
+            let greeting = "GOOD NIGHT, COMMANDER";
+            if (hour >= 5 && hour < 12) greeting = "GOOD MORNING, COMMANDER";
+            else if (hour >= 12 && hour < 18) greeting = "GOOD AFTERNOON, COMMANDER";
+            else if (hour >= 18) greeting = "GOOD EVENING, COMMANDER";
+            document.getElementById('greeting').innerText = greeting;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Simulate tool execution lock appearance
+        setTimeout(() => {
+            // document.getElementById('safety-intercept').classList.remove('hidden');
+        }, 5000);
+
+        // Terminal text blink effect handled by CSS animation
+    </script>
+</body></html>
