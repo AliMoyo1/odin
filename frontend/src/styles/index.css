@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-on-surface font-body-lg overflow-hidden h-screen;
+    @apply selection:bg-primary-container selection:text-on-primary-container;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #050505; }
+  ::-webkit-scrollbar-thumb { background: #353535; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #ff6b00; }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 107, 0, 0.1);
+  }
+
+  .drag-zone-active {
+    border-color: #ff6b00 !important;
+    background: rgba(255, 107, 0, 0.05) !important;
+  }
+
+  .terminal-blink::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+
+  .hermes-orb {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  .hermes-orb-thinking {
+    animation: breathe 1.5s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .ambient-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(600px circle at 85% 10%, rgba(255, 107, 0, 0.07), transparent 60%),
+      radial-gradient(400px circle at 15% 90%, rgba(255, 186, 32, 0.04), transparent 60%),
+      radial-gradient(circle, rgba(255, 182, 147, 0.06) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 20px 20px;
+  }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1);   filter: drop-shadow(0 0 5px rgba(255, 107, 0, 0.4)); }
+  50%       { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.7)); }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hermes-orb,
+  .hermes-orb-thinking,
+  .animate-pulse,
+  .animate-ping,
+  .animate-spin {
+    animation: none !important;
+    filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.6)) !important;
+  }
+  .terminal-blink::after {
+    animation: none !important;
+    opacity: 1;
+  }
+}

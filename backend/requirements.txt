@@ -27,3 +27,4 @@ watchdog
 pytest
 pytest-asyncio
 websockets
+aiosmtplib

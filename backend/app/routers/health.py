@@ -37,14 +37,18 @@ async def ready():
         checks["redis"] = f"error: {exc}"
         status_code = 503
 
-    # LLM provider key presence
-    checks["llm_providers"] = {
-        "deepseek": "configured" if settings.DEEPSEEK_API_KEY else "missing_key",
-        "anthropic": "configured" if settings.ANTHROPIC_API_KEY else "missing_key",
-        "gemini": "configured" if settings.GEMINI_API_KEY else "missing_key",
-        "openai": "configured" if settings.OPENAI_API_KEY else "missing_key",
-        "ollama": "configured",
-    }
+    # LLM provider status (circuit breaker aware)
+    from app.hermes import breaker as _breaker
+    provider_status = {}
+    for name in ["deepseek", "anthropic", "gemini", "openai", "ollama"]:
+        configured = bool(getattr(settings, f"{name.upper()}_API_KEY", "")) or name == "ollama"
+        if not configured:
+            provider_status[name] = "missing_key"
+        elif _breaker.get_state_snapshot(name)["circuit_open"]:
+            provider_status[name] = "circuit_open"
+        else:
+            provider_status[name] = "available"
+    checks["llm_provider"] = provider_status
 
     from fastapi.responses import JSONResponse
     return JSONResponse(content={"status": "ready" if status_code == 200 else "degraded", **checks}, status_code=status_code)

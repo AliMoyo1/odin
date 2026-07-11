@@ -43,6 +43,21 @@ services:
     depends_on:
       - redis-broker
 
+  workspace-watcher:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    command: python -m app.watcher.daemon
+    volumes:
+      - ./backend:/app
+      - ./workspace:/data/ODIN
+    env_file: .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - redis-broker
+      - database-node
+
   database-node:
     image: pgvector/pgvector:pg16
     ports:

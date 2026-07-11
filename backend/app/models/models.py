@@ -178,6 +178,7 @@ class KnowledgeDocument(Base):
     indexed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     content_sha256: Mapped[str | None] = mapped_column(String(64))
     chunk_config: Mapped[dict | None] = mapped_column(JSON)
+    embedding_config_id: Mapped[str | None] = mapped_column(UUID(as_uuid=False), ForeignKey("embedding_config.id", ondelete="SET NULL"))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
 
@@ -190,6 +191,7 @@ class KnowledgeChunk(Base):
     chunk_index: Mapped[int] = mapped_column(Integer, nullable=False)
     content: Mapped[str] = mapped_column(Text, nullable=False)
     page_number: Mapped[int | None] = mapped_column(Integer)
+    section_ref: Mapped[str | None] = mapped_column(Text)
     embedding: Mapped[Any | None] = mapped_column(Vector(1536))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
 
