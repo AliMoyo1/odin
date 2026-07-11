@@ -1,0 +1,75 @@
+name: odin
+
+services:
+  gateway-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - /opt/odin/workspace:/data/ODIN
+      - /opt/odin/keys:/keys:ro
+    env_file: /opt/odin/.env
+    restart: unless-stopped
+    depends_on:
+      - database-node
+      - redis-broker
+
+  celery-worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: celery -A workers.celery_app worker --loglevel=info
+    volumes:
+      - /opt/odin/workspace:/data/ODIN
+      - /opt/odin/backups:/backups
+    env_file: /opt/odin/.env
+    restart: unless-stopped
+    depends_on:
+      - redis-broker
+      - database-node
+
+  celery-beat:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: celery -A workers.celery_app beat --loglevel=info
+    env_file: /opt/odin/.env
+    restart: unless-stopped
+    depends_on:
+      - redis-broker
+
+  workspace-watcher:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: python -m app.watcher.daemon
+    volumes:
+      - /opt/odin/workspace:/data/ODIN
+    env_file: /opt/odin/.env
+    restart: unless-stopped
+    environment:
+      - WATCHER_FORCE_POLLING=0
+    depends_on:
+      - redis-broker
+      - database-node
+
+  database-node:
+    image: pgvector/pgvector:pg16
+    ports:
+      - "127.0.0.1:5434:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - odin_prod_db:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis-broker:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+volumes:
+  odin_prod_db:
