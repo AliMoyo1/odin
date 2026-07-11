@@ -99,7 +99,7 @@ class OpenAICompatProvider:
             usage: dict = {}
             text_acc = ""
 
-            async with client.chat.completions.create(**create_kwargs) as stream:
+            async with await client.chat.completions.create(**create_kwargs) as stream:
                 async for chunk in stream:
                     if chunk.usage:
                         usage = {
