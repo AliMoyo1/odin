@@ -44,6 +44,7 @@ class Settings(BaseSettings):
     WHATSAPP_PHONE_NUMBER_ID: str = ""
     WHATSAPP_VERIFY_TOKEN: str = ""
     WHATSAPP_ALLOWED_NUMBER: str = ""
+    WHATSAPP_ALERT_TEMPLATE: str = ""
     WA_DRY_RUN: bool = True
 
     # SMTP
