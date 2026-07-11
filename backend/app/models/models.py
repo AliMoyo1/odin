@@ -24,7 +24,7 @@ class Base(DeclarativeBase):
 
 # Enums (create_type=False: migration creates them via op.execute)
 task_status_enum = Enum(
-    "backlog", "todo", "in_progress", "blocked", "done", "cancelled",
+    "backlog", "todo", "in_progress", "blocked", "done", "cancelled", "archived",
     name="task_status", create_type=False,
 )
 task_priority_enum = Enum(

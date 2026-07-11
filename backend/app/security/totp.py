@@ -1,26 +1,14 @@
-import base64
-import os
-
 import pyotp
-from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-from app.config import settings
-
-
-def _aes_key() -> bytes:
-    return base64.b64decode(settings.ENCRYPTION_KEY)
+from app.services.crypto import decrypt, encrypt
 
 
 def encrypt_secret(plaintext: str) -> str:
-    nonce = os.urandom(12)
-    ct = AESGCM(_aes_key()).encrypt(nonce, plaintext.encode(), None)
-    return base64.b64encode(nonce + ct).decode()
+    return encrypt(plaintext)
 
 
 def decrypt_secret(blob: str) -> str:
-    raw = base64.b64decode(blob)
-    nonce, ct = raw[:12], raw[12:]
-    return AESGCM(_aes_key()).decrypt(nonce, ct, None).decode()
+    return decrypt(blob)
 
 
 def generate_secret() -> str:
