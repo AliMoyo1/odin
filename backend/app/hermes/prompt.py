@@ -27,7 +27,7 @@ def build_system_prompt(
         parts.append(project_block)
 
     if memories:
-        mem_block = "Relevant memories:\n" + "\n".join(f"- {m}" for m in memories)
+        mem_block = "Known facts about the user:\n" + "\n".join(f"- {m}" for m in memories)
         parts.append(mem_block)
 
     if rag_chunks:

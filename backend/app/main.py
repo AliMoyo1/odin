@@ -17,6 +17,7 @@ from app.routers.dashboard import router as dashboard_router
 from app.routers.files import router as files_router
 from app.routers.health import router as health_router
 from app.routers.kb import router as kb_router
+from app.routers.memory import router as memory_router
 from app.routers.notifications import router as notifications_router
 from app.routers.projects import router as projects_router
 from app.routers.tasks import router as tasks_router
@@ -52,6 +53,7 @@ app.include_router(chat_router)
 app.include_router(approvals_router)
 app.include_router(files_router)
 app.include_router(kb_router)
+app.include_router(memory_router)
 
 
 @app.get("/metrics", include_in_schema=False)

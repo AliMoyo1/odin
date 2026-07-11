@@ -95,8 +95,32 @@ async def run_turn(
     partial_text = ""
 
     try:
+        conv_summary: str | None = None
+        recalled_memories: list[str] = []
+        latest_user_text: str = ""
+
         async with async_session() as session:
             raw_history = await conversation_service.get_messages(session, user_id, conversation_id, limit=100)
+            try:
+                conv = await conversation_service.get_conversation(session, user_id, conversation_id)
+                conv_summary = conv.summary
+            except Exception:
+                pass
+
+        # Latest user message for recall
+        for m in reversed(raw_history):
+            if m.role == "user" and m.content:
+                latest_user_text = m.content
+                break
+
+        if latest_user_text:
+            try:
+                async with async_session() as session:
+                    from app.services.memory_service import recall as _recall
+                    results = await _recall(session, user_id, latest_user_text, k=5)
+                    recalled_memories = [r.formatted for r in results]
+            except Exception:
+                pass
 
         history = [
             ChatMessage(
@@ -107,8 +131,14 @@ async def run_turn(
             for m in raw_history
         ]
 
-        system = build_system_prompt(user_email=user_id)
-        budgeted, budget_info = build_budgeted_messages(system, history, [], [])
+        system = build_system_prompt(
+            user_email=user_id,
+            memories=recalled_memories if recalled_memories else None,
+        )
+        budgeted, budget_info = build_budgeted_messages(
+            system, history, recalled_memories, [],
+            conversation_summary=conv_summary,
+        )
         tools = tool_registry.specs()
         iteration = 0
         last_tool_call: tuple[str, str] | None = None  # (name, args_hash) for repeat guard
@@ -177,6 +207,7 @@ async def run_turn(
 
             if not tool_calls_this_turn:
                 await _publish_event(channel, "message.done", {"message_id": str(asst_msg.id)})
+                await _maybe_enqueue_extraction(conversation_id, len(raw_history) + 1)
                 return
 
             # Process tool calls
@@ -260,6 +291,26 @@ async def run_turn(
         await _publish_event(channel, "error", {"message": "Internal error during generation"})
     finally:
         await _unregister_run(run_id)
+
+
+_EXTRACTION_CADENCE = 10  # messages between extractions
+
+
+async def _maybe_enqueue_extraction(conversation_id: str, current_message_count: int) -> None:
+    """Enqueue memory extraction if the conversation has grown by CADENCE messages since last extraction."""
+    r = aioredis.from_url(settings.REDIS_URL, decode_responses=True)
+    try:
+        marker_key = f"memext:{conversation_id}"
+        marker = await r.get(marker_key)
+        last_count = int(marker) if marker else 0
+        if current_message_count - last_count >= _EXTRACTION_CADENCE:
+            await r.set(marker_key, str(current_message_count))
+            from workers.memory_jobs import extract_memories
+            extract_memories.delay(conversation_id)
+    except Exception:
+        pass
+    finally:
+        await r.aclose()
 
 
 async def resume_from_gate(approval_data: dict, result_text: str) -> None:

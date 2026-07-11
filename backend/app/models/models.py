@@ -208,6 +208,9 @@ class Memory(Base):
     embedding: Mapped[Any | None] = mapped_column(Vector(1536))
     confidence: Mapped[float | None] = mapped_column()
     approved: Mapped[bool] = mapped_column(Boolean, default=True)
+    extra_meta: Mapped[dict | None] = mapped_column("metadata", JSON)
+    access_count: Mapped[int] = mapped_column(Integer, default=0)
+    last_accessed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
 
