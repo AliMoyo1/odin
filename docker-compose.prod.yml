@@ -8,9 +8,9 @@ services:
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
-      - /opt/odin/workspace:/data/ODIN
-      - /opt/odin/keys:/keys:ro
-    env_file: /opt/odin/.env
+      - ./workspace:/data/ODIN
+      - ./keys:/keys:ro
+    env_file: .env
     restart: unless-stopped
     depends_on:
       - database-node
@@ -22,9 +22,9 @@ services:
       dockerfile: Dockerfile
     command: celery -A workers.celery_app worker --loglevel=info
     volumes:
-      - /opt/odin/workspace:/data/ODIN
-      - /opt/odin/backups:/backups
-    env_file: /opt/odin/.env
+      - ./workspace:/data/ODIN
+      - ./backups:/backups
+    env_file: .env
     restart: unless-stopped
     depends_on:
       - redis-broker
@@ -35,7 +35,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     command: celery -A workers.celery_app beat --loglevel=info
-    env_file: /opt/odin/.env
+    env_file: .env
     restart: unless-stopped
     depends_on:
       - redis-broker
@@ -46,8 +46,8 @@ services:
       dockerfile: Dockerfile
     command: python -m app.watcher.daemon
     volumes:
-      - /opt/odin/workspace:/data/ODIN
-    env_file: /opt/odin/.env
+      - ./workspace:/data/ODIN
+    env_file: .env
     restart: unless-stopped
     environment:
       - WATCHER_FORCE_POLLING=0
@@ -57,8 +57,6 @@ services:
 
   database-node:
     image: pgvector/pgvector:pg16
-    ports:
-      - "127.0.0.1:5434:5432"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
